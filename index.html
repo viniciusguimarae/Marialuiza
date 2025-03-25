@@ -14,6 +14,7 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            overflow: hidden;
         }
 
         .container {
@@ -21,11 +22,14 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
             font-size: 36px;
             color: #333;
+            font-weight: bold;
         }
 
         .buttons {
@@ -68,42 +72,98 @@
             opacity: 0.6; /* Deixa o botão "não" um pouco transparente */
         }
 
-        /* Estilo para a mensagem de erro estilo Windows */
-        .error-message {
+        /* Estilo para a mensagem de aceitação em destaque */
+        .message {
             display: none;
             background-color: #f2f2f2;
-            border: 1px solid #ccc;
+            border: 2px solid #4CAF50;
             padding: 15px;
             margin-top: 20px;
             border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            color: #333;
-            text-align: left;
+            font-size: 20px;
+            color: #4CAF50;
+            font-weight: bold;
+            text-align: center;
             width: 80%;
-            margin: 0 auto;
+            margin: 20px auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Animação para os balões subindo */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            animation: float 5s ease-in infinite;
+            font-size: 30px;
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -100px;
+            }
+            100% {
+                bottom: 100vh;
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Adicionando animação com balões de diferentes cores */
+        .balloon:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .balloon:nth-child(2) {
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(3) {
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(4) {
+            left: 40%;
+            animation-delay: 3s;
+        }
+
+        .balloon:nth-child(5) {
+            left: 50%;
+            animation-delay: 4s;
+        }
+
+        .balloon:nth-child(6) {
+            left: 60%;
+            animation-delay: 5s;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Aceita casar comigo, Maria Luisa?</h1>
+    <h1>Aceita casar comigo, Maria Luiza?</h1>
     <div class="buttons">
         <button class="button yes">Sim</button>
         <button class="button no">Não</button>
     </div>
-    <div class="error-message">
-        <p><strong>Erro: </strong>Obvio que aceita, não tem como negar o homem mais lindo desse mundo.</p>
+    <div class="message">
+        <p>Sim! 💍 Você é o homem mais lindo do mundo! ❤</p>
     </div>
 </div>
+
+<!-- Balões para animação -->
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
 
 <script>
     const noButton = document.querySelector('.no');
     const yesButton = document.querySelector('.yes');
-    const errorMessage = document.querySelector('.error-message');
+    const message = document.querySelector('.message');
 
     // Faz o botão "Não" fugir do mouse
     noButton.addEventListener('mouseover', () => {
@@ -119,12 +179,11 @@
         noButton.style.transform = 'translate(0, 0)';
     });
 
-    // Exibe a mensagem de erro estilo Windows quando clicar no "Sim"
+    // Exibe a mensagem de aceitação quando clicar no "Sim"
     yesButton.addEventListener('click', () => {
-        // Mostra a mensagem de erro
-        errorMessage.style.display = 'block';
+        // Mostra a mensagem de aceitação
+        message.style.display = 'block';
     });
-
 </script>
 
 </body>

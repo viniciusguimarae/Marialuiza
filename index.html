@@ -61,22 +61,51 @@
             position: absolute;
             transition: transform 0.1s ease;
         }
+
+        /* A classe para impedir o botão de ser clicado */
+        .no.unreachable {
+            pointer-events: none; /* Desabilita a interação com o botão */
+            opacity: 0.6; /* Deixa o botão "não" um pouco transparente */
+        }
+
+        /* Estilo para a mensagem de erro estilo Windows */
+        .error-message {
+            display: none;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            color: #333;
+            text-align: left;
+            width: 80%;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Você quer casar comigo?</h1>
+    <h1>Aceita casar comigo, Maria Luisa?</h1>
     <div class="buttons">
         <button class="button yes">Sim</button>
         <button class="button no">Não</button>
+    </div>
+    <div class="error-message">
+        <p><strong>Erro: </strong>Obvio que aceita, não tem como negar o homem mais lindo desse mundo.</p>
     </div>
 </div>
 
 <script>
     const noButton = document.querySelector('.no');
     const yesButton = document.querySelector('.yes');
+    const errorMessage = document.querySelector('.error-message');
 
+    // Faz o botão "Não" fugir do mouse
     noButton.addEventListener('mouseover', () => {
         noButton.classList.add('flee');
         const randomX = Math.random() * 200 - 100; // Movimenta entre -100 e 100px
@@ -84,18 +113,18 @@
         noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
     });
 
+    // Faz o botão "Não" voltar ao lugar quando o mouse sai
     noButton.addEventListener('mouseleave', () => {
         noButton.classList.remove('flee');
         noButton.style.transform = 'translate(0, 0)';
     });
 
+    // Exibe a mensagem de erro estilo Windows quando clicar no "Sim"
     yesButton.addEventListener('click', () => {
-        alert('Que bom! 💍');
+        // Mostra a mensagem de erro
+        errorMessage.style.display = 'block';
     });
 
-    noButton.addEventListener('click', () => {
-        alert('Que pena, mas tudo bem! 💔');
-    });
 </script>
 
 </body>
